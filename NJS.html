@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Project Name | Axerion</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'DM Sans',sans-serif;
+
+background:#050816;
+
+color:#ffffff;
+
+overflow-x:hidden;
+}
+
+img{
+display:block;
+max-width:100%;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+/* ==========================
+   VARIABLES
+========================== */
+
+:root{
+
+--bg:#050816;
+
+--surface:#0F172A;
+
+--surface-light:#16213E;
+
+--accent:#38B6FF;
+
+--accent-dark:#0A4EA8;
+
+--white:#ffffff;
+
+--text:rgba(255,255,255,.75);
+
+}
+
+/* ==========================
+   CONTAINER
+========================== */
+
+.container{
+
+width:min(90%,1200px);
+
+margin:auto;
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+
+.navbar{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+z-index:1000;
+
+background:rgba(5,8,22,.85);
+
+backdrop-filter:blur(20px);
+
+border-bottom:
+1px solid rgba(255,255,255,.08);
+}
+
+.navbar .container{
+
+height:90px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+}
+
+.logo{
+
+font-family:'Bebas Neue',sans-serif;
+
+font-size:2rem;
+
+letter-spacing:2px;
+}
+
+.back-btn{
+
+padding:1rem 1.5rem;
+
+background:var(--accent);
+
+color:#050816;
+
+font-weight:700;
+
+border-radius:100px;
+}
+
+/* ==========================
+   HERO
+========================== */
+
+.project-hero{
+
+padding-top:180px;
+
+padding-bottom:120px;
+
+text-align:center;
+}
+
+.project-tag{
+
+display:inline-block;
+
+padding:.75rem 1.25rem;
+
+border-radius:100px;
+
+border:1px solid rgba(255,255,255,.08);
+
+color:var(--accent);
+
+font-size:.8rem;
+
+letter-spacing:2px;
+
+margin-bottom:2rem;
+}
+
+.project-hero h1{
+
+font-family:'Bebas Neue',sans-serif;
+
+font-size:clamp(5rem,12vw,10rem);
+
+line-height:.9;
+
+margin-bottom:2rem;
+}
+
+.project-hero p{
+
+max-width:700px;
+
+margin:auto;
+
+font-size:1.1rem;
+
+line-height:1.8;
+
+color:var(--text);
+}
+
+/* ==========================
+   COVER IMAGE
+========================== */
+
+.project-cover{
+
+padding-bottom:6rem;
+}
+
+.project-cover img{
+
+width:100%;
+
+border-radius:24px;
+
+border:
+1px solid rgba(255,255,255,.08);
+}
+
+/* ==========================
+   OVERVIEW
+========================== */
+
+.project-overview{
+
+padding:6rem 0;
+}
+
+.section-title{
+
+font-family:'Bebas Neue',sans-serif;
+
+font-size:4rem;
+
+margin-bottom:2rem;
+}
+
+.project-overview p{
+
+max-width:900px;
+
+line-height:1.9;
+
+font-size:1.1rem;
+
+color:var(--text);
+}
+
+/* ==========================
+   GALLERY
+========================== */
+
+.gallery{
+
+padding:6rem 0;
+}
+
+.gallery-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:2rem;
+}
+
+.gallery-grid img{
+
+width:100%;
+
+border-radius:20px;
+
+border:
+1px solid rgba(255,255,255,.08);
+
+transition:.3s ease;
+}
+
+.gallery-grid img:hover{
+
+transform:translateY(-8px);
+}
+
+/* ==========================
+   LINKS
+========================== */
+
+.project-links{
+
+padding:6rem 0;
+}
+
+.link-buttons{
+
+display:flex;
+
+gap:1rem;
+
+flex-wrap:wrap;
+}
+
+.project-btn{
+
+padding:1rem 2rem;
+
+background:var(--accent);
+
+color:#050816;
+
+font-weight:700;
+
+border-radius:100px;
+
+transition:.3s;
+}
+
+.project-btn:hover{
+
+transform:translateY(-3px);
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+
+padding:4rem 0;
+
+text-align:center;
+
+color:var(--text);
+
+border-top:
+1px solid rgba(255,255,255,.08);
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.project-hero{
+
+padding-top:140px;
+}
+
+.project-hero h1{
+
+font-size:4rem;
+}
+
+.gallery-grid{
+
+grid-template-columns:1fr;
+}
+
+.section-title{
+
+font-size:3rem;
+}
+
+.back-btn{
+
+padding:.8rem 1.2rem;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="container">
+
+<div class="logo">
+
+AXERION
+
+</div>
+
+<a href="index.html" class="back-btn">
+
+← Back To Portfolio
+
+</a>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="project-hero">
+
+<div class="container">
+
+<span class="project-tag">
+
+WEB DESIGN & DEVELOPMENT
+
+</span>
+
+<h1>
+
+PROJECT
+NAME
+
+</h1>
+
+<p>
+
+Replace this text with a short project
+description explaining the goal,
+industry and outcome.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- COVER IMAGE -->
+
+<section class="project-cover">
+
+<div class="container">
+
+<img
+src="assets/images/project-cover.jpg"
+alt="Project Cover">
+
+</div>
+
+</section>
+
+<!-- OVERVIEW -->
+
+<section class="project-overview">
+
+<div class="container">
+
+<h2 class="section-title">
+
+PROJECT OVERVIEW
+
+</h2>
+
+<p>
+
+Replace this with the project overview.
+
+Explain the client, challenge,
+solution and outcome.
+
+This section should tell the story
+behind the project.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="gallery">
+
+<div class="container">
+
+<h2 class="section-title">
+
+GALLERY
+
+</h2>
+
+<div class="gallery-grid">
+
+<img src="assets/images/project-1.jpg">
+
+<img src="assets/images/project-2.jpg">
+
+<img src="assets/images/project-3.jpg">
+
+<img src="assets/images/project-4.jpg">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- LINKS -->
+
+<section class="project-links">
+
+<div class="container">
+
+<h2 class="section-title">
+
+PROJECT LINKS
+
+</h2>
+
+<div class="link-buttons">
+
+<a
+href="#"
+target="_blank"
+class="project-btn">
+
+Live Website
+
+</a>
+
+<a
+href="#"
+target="_blank"
+class="project-btn">
+
+GitHub Repository
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Axerion. All Rights Reserved.
+
+</footer>
+
+</body>
+</html>
