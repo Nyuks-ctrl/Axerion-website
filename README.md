@@ -29,7 +29,7 @@ No build tools needed — this is plain HTML, CSS, and JavaScript.
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/your-org/axerion-website.git
+   git clone https://github.com/Nyuks-ctrl/axerion-website.git
    cd axerion-website
    ```
 
