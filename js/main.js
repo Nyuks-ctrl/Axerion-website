@@ -1,92 +1,144 @@
-/* ─── CUSTOM CURSOR (desktop only) ─── */
-if (window.matchMedia('(pointer: fine)').matches) {
-  const cursor = document.getElementById('cursor');
-  const ring   = document.getElementById('cursor-ring');
-  let mx = 0, my = 0, rx = 0, ry = 0;
+/* ============================================================
+   AXERION — main.js
+   Mobile-aware: touch events, reduced motion, pointer checks
+   ============================================================ */
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
-  });
-
-  function animRing() {
-    rx += (mx - rx - 18) * 0.12;
-    ry += (my - ry - 18) * 0.12;
-    ring.style.transform = `translate(${rx}px, ${ry}px)`;
-    requestAnimationFrame(animRing);
-  }
-  animRing();
-}
-
-/* ─── NAV SCROLL STATE ─── */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
+/* ─── UTILS ─── */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch = () => window.matchMedia('(pointer: coarse)').matches;
 
 /* ─── HAMBURGER MENU ─── */
-const hamburger  = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+const hamburger     = document.getElementById('hamburger');
+const mobileOverlay = document.getElementById('mobileOverlay');
+const mobileClose   = document.getElementById('mobileClose');
 
-hamburger.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.toggle('open');
-  nav.classList.toggle('menu-open', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-});
-
-function closeMenu() {
-  mobileMenu.classList.remove('open');
-  nav.classList.remove('menu-open');
-  document.body.style.overflow = '';
+function openMenu() {
+  mobileOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  hamburger.setAttribute('aria-expanded', 'true');
 }
 
-// Close on Escape key
+function closeMenu() {
+  mobileOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  hamburger.setAttribute('aria-expanded', 'false');
+}
+
+hamburger.addEventListener('click', openMenu);
+mobileClose.addEventListener('click', closeMenu);
+
+// Close when a nav link is tapped
+mobileOverlay.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+// Close on Escape key (keyboard / desktop)
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeMenu();
 });
 
-/* ─── PARTICLES ─── */
-const particlesEl = document.getElementById('particles');
-for (let i = 0; i < 30; i++) {
-  const p = document.createElement('div');
-  p.className = 'particle';
-  p.style.cssText = `
-    left: ${Math.random() * 100}%;
-    top: ${20 + Math.random() * 60}%;
-    --dur: ${6 + Math.random() * 8}s;
-    --delay: -${Math.random() * 10}s;
-    width: ${1 + Math.random() * 3}px;
-    height: ${1 + Math.random() * 3}px;
-    opacity: ${0.3 + Math.random() * 0.5};
-  `;
-  particlesEl.appendChild(p);
+// Close on overlay background tap (outside the nav links)
+mobileOverlay.addEventListener('click', e => {
+  if (e.target === mobileOverlay) closeMenu();
+});
+
+/* ─── NAV SCROLL STATE ─── */
+const navbar = document.querySelector('.navbar');
+
+function handleNavScroll() {
+  navbar.style.background = window.scrollY > 60
+    ? 'rgba(5, 8, 22, 0.97)'
+    : 'rgba(8, 13, 31, 0.85)';
 }
 
-/* ─── SCROLL REVEAL ─── */
-const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('visible');
-  });
-}, { threshold: 0.1 });
-reveals.forEach(r => revealObserver.observe(r));
-
-/* ─── PROCESS TIMELINE GLOW ─── */
-const glowEl        = document.getElementById('processGlow');
-const processSection = document.getElementById('process');
-const glowObserver  = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting) glowEl.classList.add('active');
-}, { threshold: 0.3 });
-glowObserver.observe(processSection);
+// Use passive listener — never blocks scroll on mobile
+window.addEventListener('scroll', handleNavScroll, { passive: true });
 
 /* ─── SMOOTH ANCHOR SCROLL ─── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    // Respect reduced motion — jump instead of scroll
+    target.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth'
+    });
   });
 });
+
+/* ─── SCROLL REVEAL ─── */
+// Skip animation entirely if user prefers reduced motion
+const revealEls = document.querySelectorAll(
+  '.why-card, .portfolio-item, .pipeline-step, .team-card, ' +
+  '.about-left, .about-right, .contact-content, .contact-form, .section-header'
+);
+
+if (!prefersReducedMotion) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity   = '1';
+        entry.target.style.transform = 'translateY(0)';
+        // Unobserve after reveal — saves memory on long pages
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.08,          // slightly lower — easier to trigger on small screens
+    rootMargin: '0px 0px -40px 0px'  // reveal slightly before fully in view
+  });
+
+  revealEls.forEach((el, i) => {
+    el.style.opacity    = '0';
+    el.style.transform  = 'translateY(28px)';
+    // Stagger cards in the same row on tablet/desktop
+    el.style.transition = `opacity 0.7s ease ${i * 0.05}s, transform 0.7s ease ${i * 0.05}s`;
+    observer.observe(el);
+  });
+} else {
+  // Reduced motion: just make sure everything is visible
+  revealEls.forEach(el => { el.style.opacity = '1'; });
+}
+
+/* ─── ACTIVE NAV LINK ON SCROLL ─── */
+const sections  = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navAnchors.forEach(a => {
+        a.classList.toggle(
+          'active',
+          a.getAttribute('href') === `#${entry.target.id}`
+        );
+      });
+    }
+  });
+}, {
+  threshold: 0.35
+});
+
+sections.forEach(s => sectionObserver.observe(s));
+
+/* ─── FORM SUBMIT FEEDBACK ─── */
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('.contact-btn');
+    btn.textContent = 'Sent ✓';
+    btn.style.background = '#22c55e';
+    btn.disabled = true;
+    // Reset after 4s
+    setTimeout(() => {
+      btn.textContent = 'Start Your Project';
+      btn.style.background = '';
+      btn.disabled = false;
+      contactForm.reset();
+    }, 4000);
+  });
+}

@@ -1,692 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Axerion — Creative Design Meets Modern Development</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axerion — Creative Design Meets Modern Development</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="mobile-overlay" id="mobileOverlay">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <nav class="mobile-nav">
+      <a href="#portfolio" onclick="closeMenu()">Work</a>
+      <a href="#why"       onclick="closeMenu()">Why Us</a>
+      <a href="#process"   onclick="closeMenu()">Process</a>
+      <a href="#about"     onclick="closeMenu()">About</a>
+      <a href="#contact"   onclick="closeMenu()" class="mobile-nav-cta">Start Project ↗</a>
+    </nav>
+  </div>
 
-
-
-
-
-  <!-- ==========================
-     NAVIGATION
-========================== -->
-
-<nav class="navbar">
-
+  <!-- NAV -->
+  <nav class="navbar">
     <div class="container">
 
-        <a href="#" class="logo">
+      <a href="#" class="logo">
+        <img src="assets/images/Axerion_Logo.png" alt="Axerion Logo">
+      </a>
 
-            <img
-                src="assets/images/Axerion_Logo.png"
-                alt="Axerion Logo">
+      <ul class="nav-links">
+        <li><a href="#portfolio">Work</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-        </a>
+      <a href="#contact" class="nav-btn">Start Project ↗</a>
 
-        <ul class="nav-links">
-
-            <li>
-                <a href="#portfolio">
-                    Work
-                </a>
-            </li>
-
-            <li>
-                <a href="#why">
-                    Why Us
-                </a>
-            </li>
-
-            <li>
-                <a href="#process">
-                    Process
-                </a>
-            </li>
-
-            <li>
-                <a href="#about">
-                    About
-                </a>
-            </li>
-
-            <li>
-                <a href="#contact">
-                    Contact
-                </a>
-            </li>
-
-        </ul>
-
-        <a
-            href="#contact"
-            class="nav-btn">
-
-            Start Project
-
-        </a>
-
-        <button
-            class="hamburger"
-            aria-label="Open Menu">
-
-            ☰
-
-        </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
 
     </div>
+  </nav>
 
-</nav>
-
-<!-- ==========================
-     HERO
-========================== -->
-
-<section id="hero">
-
+  <!-- HERO -->
+  <section id="hero">
     <div class="hero-grid">
 
-        <!-- LEFT -->
-
-        <div class="hero-left">
-
-            <div class="hero-label">
-
-                CREATIVE DESIGN • MODERN DEVELOPMENT
-
-            </div>
-
-            <h1>
-
-                WHERE
-
-                <span>DESIGN</span>
-
-                MEETS
-
-                <span>DEVELOPMENT.</span>
-
-            </h1>
-
-            <p>
-
-                Axerion creates visually striking,
-                technically robust websites that
-                help ambitious brands stand out,
-                build trust and grow online.
-
-            </p>
-
-            <div class="hero-buttons">
-
-                <a
-                    href="#contact"
-                    class="btn-primary">
-
-                    Start Project
-
-                </a>
-
-                <a
-                    href="#portfolio"
-                    class="btn-secondary">
-
-                    View Work
-
-                </a>
-
-            </div>
-
+      <div class="hero-left">
+        <div class="hero-label">CREATIVE DESIGN • MODERN DEVELOPMENT</div>
+        <h1>WE BUILD <span>DIGITAL EXPERIENCES </span> PEOPLE <span>REMEMBER.</span></h1>
+        <p>Axerion creates visually striking, technically robust websites that help ambitious brands stand out, build trust and grow online.</p>
+        <div class="hero-buttons">
+          <a href="#contact"   class="btn-primary">Start Project</a>
+          <a href="#portfolio" class="btn-secondary">View Work</a>
         </div>
+      </div>
 
-        
+      
+  </section>
 
-        </div>
-
-    </div>
-
-</section>
-  <!-- Portfolio -->
+  <!-- PORTFOLIO -->
   <section id="portfolio">
-      <div class="container">
+    <div class="container">
       <div class="section-header">
         <h2>Our Work</h2>
-        </div>  
-          <div class="portfolio-grid">
-
-              <div class="portfolio-item">
-                <a href="Fumihair.html">
-                  <img src="assets/images/Fumi hero.png" alt="Fumi hair">
-                  <h3>Fumi hair</h3>
-                </a>
-              </div>
-
-              <div class="portfolio-item">
-                <a href="Lethlabile.html">
-                  <img src="assets/images/lethlabile hero.png" alt="Lethlabile">
-                  <h3>Lethlabile Server hosting</h3>
-                </a>
-              </div>
-
-              <div class="portfolio-item">
-                <a href="NjS.html">
-                  <img src="assets/images/Njs hero.png" alt="NJS brand">
-                  <h3>NJS Brand</h3>
-                </a>
-              </div>
-
-              <div class="portfolio-item">
-                <a href="Rhandzusdecor.html">
-                  <img src="assets/images/Rhandzu hero.png" alt="Rhandzus decor">
-                  <h3>Rhandzus Decor</h3>
-                </a>
-              </div>
-  </div>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <a href="Fumihair.html">
+            <img src="assets/images/Fumi hero.png" alt="Fumi Hair">
+            <h3>Fumi Hair</h3>
+          </a>
+        </div>
+        <div class="portfolio-item">
+          <a href="Lethlabile.html">
+            <img src="assets/images/lethlabile hero.png" alt="Lethlabile">
+            <h3>Lethlabile Server Hosting</h3>
+          </a>
+        </div>
+        <div class="portfolio-item">
+          <a href="NjS.html">
+            <img src="assets/images/Njs hero.png" alt="NJS Brand">
+            <h3>NJS Brand</h3>
+          </a>
+        </div>
+        <div class="portfolio-item">
+          <a href="Rhandzusdecor.html">
+            <img src="assets/images/Rhandzu hero.png" alt="Rhandzus Decor">
+            <h3>Rhandzus Decor</h3>
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Why Axerion -->
+  <!-- WHY AXERION -->
   <section id="why">
-      <div class="container">
- <div class="section-header">
-
-            <h2>
-                Why Axerion
-            </h2>
-
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Axerion</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="why-number">01</span>
+          <h3>Design First</h3>
+          <p>Every website starts with strategy and thoughtful design before development begins.</p>
         </div>
-
-        <div class="why-grid">
-
-            <div class="why-card">
-
-                <span class="why-number">
-                    01
-                </span>
-
-                <h3>
-                    Design First
-                </h3>
-
-                <p>
-                    Every website starts with
-                    strategy and thoughtful design
-                    before development begins.
-                </p>
-
-            </div>
-
-            <div class="why-card">
-
-                <span class="why-number">
-                    02
-                </span>
-
-                <h3>
-                    Built For Growth
-                </h3>
-
-                <p>
-                    We create websites that help
-                    businesses build trust and
-                    attract more enquiries.
-                </p>
-
-            </div>
-
-            <div class="why-card">
-
-                <span class="why-number">
-                    03
-                </span>
-
-                <h3>
-                    Modern Development
-                </h3>
-
-                <p>
-                    Fast, responsive and scalable
-                    websites built using modern
-                    development practices.
-                </p>
-
-            </div>
-
+        <div class="why-card">
+          <span class="why-number">02</span>
+          <h3>Built For Growth</h3>
+          <p>We create websites that help businesses build trust and attract more enquiries.</p>
         </div>
-
-  </div>
+        <div class="why-card">
+          <span class="why-number">03</span>
+          <h3>Modern Development</h3>
+          <p>Fast, responsive and scalable websites built using modern development practices.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Process -->
+  <!-- PROCESS -->
   <section id="process">
-      <div class="container">
-   <section id="process">
-
     <div class="container">
-
-        <div class="section-header">
-
-            <h2>
-
-                From Vision
-                To Launch
-
-            </h2>
-
-            <p>
-
-                Every project follows a clear process
-                designed to turn ideas into impactful
-                digital experiences.
-
-            </p>
-
+      <div class="section-header">
+        <h2>From Vision To Launch</h2>
+        <p>Every project follows a clear process designed to turn ideas into impactful digital experiences.</p>
+      </div>
+      <div class="process-pipeline">
+        <div class="pipeline-step">
+          <span class="step-number">01</span>
+          <h3>Discover</h3>
+          <p>We learn about your business, goals and audience.</p>
         </div>
-
-        <div class="process-pipeline">
-
-            <div class="pipeline-step">
-
-                <span class="step-number">
-                    01
-                </span>
-
-                <h3>
-                    Discover
-                </h3>
-
-                <p>
-
-                    We learn about your business,
-                    goals and audience.
-
-                </p>
-
-            </div>
-
-            <div class="pipeline-line"></div>
-
-            <div class="pipeline-step">
-
-                <span class="step-number">
-                    02
-                </span>
-
-                <h3>
-                    Create
-                </h3>
-
-                <p>
-
-                    We design an experience
-                    tailored to your brand.
-
-                </p>
-
-            </div>
-
-            <div class="pipeline-line"></div>
-
-            <div class="pipeline-step">
-
-                <span class="step-number">
-                    03
-                </span>
-
-                <h3>
-                    Develop
-                </h3>
-
-                <p>
-
-                    We bring the design to life
-                    through modern development.
-
-                </p>
-
-            </div>
-
-            <div class="pipeline-line"></div>
-
-            <div class="pipeline-step">
-
-                <span class="step-number">
-                    04
-                </span>
-
-                <h3>
-                    Launch
-                </h3>
-
-                <p>
-
-                    Your website goes live
-                    and starts working for you.
-
-                </p>
-
-            </div>
-
+        <div class="pipeline-line"></div>
+        <div class="pipeline-step">
+          <span class="step-number">02</span>
+          <h3>Create</h3>
+          <p>We design an experience tailored to your brand.</p>
         </div>
-
+        <div class="pipeline-line"></div>
+        <div class="pipeline-step">
+          <span class="step-number">03</span>
+          <h3>Develop</h3>
+          <p>We bring the design to life through modern development.</p>
+        </div>
+        <div class="pipeline-line"></div>
+        <div class="pipeline-step">
+          <span class="step-number">04</span>
+          <h3>Launch</h3>
+          <p>Your website goes live and starts working for you.</p>
+        </div>
+      </div>
     </div>
-
-</section>
-
-  </div>
   </section>
 
-  <!-- About -->
+  <!-- ABOUT -->
   <section id="about">
-      <div class="container">
-  <div class="about-grid">
-
-            <div class="about-left">
-
-                <span class="section-tag">
-
-                    ABOUT AXERION
-
-                </span>
-
-                <h2>
-
-                    A Creative
-                    Partnership.
-
-                </h2>
-
-            </div>
-
-            <div class="about-right">
-
-                <p>
-
-                    Axerion was founded on the idea
-                    that exceptional websites require
-                    both creative thinking and technical
-                    expertise.
-
-                </p>
-
-                <p>
-
-                    By combining strategic design with
-                    modern development, we create digital
-                    experiences that are visually striking,
-                    responsive and built for growth.
-
-                </p>
-
-                <p>
-
-                    Every project is approached with
-                    attention to detail, ensuring the
-                    final product reflects the client's
-                    brand while delivering real business
-                    value.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="team-section">
-
-            <div class="team-card">
-
-                <span>
-                    Creative Direction
-                </span>
-
-                <h3>
-                    Tshego Marema
-                </h3>
-
-                <p>
-
-                    Responsible for visual design,
-                    branding, user experience and
-                    creative strategy.
-
-                </p>
-
-            </div>
-
-            <div class="team-card">
-
-                <span>
-                    Development
-                </span>
-
-                <h3>
-                    Comfort Minyuku
-                </h3>
-
-                <p>
-
-                    Responsible for development,
-                    functionality, integrations and
-                    technical implementation.
-
-                </p>
-
-            </div>
-
-        </div>
-
-  </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-      <div class="container">
-  <div class="contact-wrapper">
-
-            <div class="contact-content">
-
-                <span class="section-tag">
-
-                    START YOUR PROJECT
-
-                </span>
-
-                <h2>
-
-                    READY TO
-                    STAND OUT
-                    ONLINE?   
-
-                </h2>
-
-                <p>
-
-                    Whether you're launching a new
-                    business, redesigning your website,
-                    or looking for a digital partner,
-                    we'd love to hear from you.
-
-                </p>
-
-            </div>
-
-            <form class="contact-form">
-
-                <div class="form-group">
-
-                    <label>
-                        Name
-                    </label>
-
-                    <input
-                    type="text"
-                    placeholder="Your Name">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Email
-                    </label>
-
-                    <input
-                    type="email"
-                    placeholder="you@example.com">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Project Type
-                    </label>
-
-                    <select>
-
-                        <option>
-                            Website Design
-                        </option>
-
-                        <option>
-                            Website Development
-                        </option>
-
-                        <option>
-                            Website Redesign
-                        </option>
-
-                        
-                            <option>
-                             AI & Automation
-                        </option>
-                        
-                        <option>
-                           Not Sure Yet
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Project Details
-                    </label>
-
-                    <textarea
-                    rows="6"
-                    placeholder="Tell us about your project..."></textarea>
-
-                </div>
-
-                <button
-                type="submit"
-                class="contact-btn">
-
-                    Start Your Project
-
-                </button>
-
-            </form>
-
-        </div>
-
-  </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <footer>
-
     <div class="container">
-
-        <div class="footer-top">
-
-            <div class="footer-brand">
-
-                <h2>
-
-                    AXERION
-
-                </h2>
-
-                <p>
-
-                    Creative Design.
-                    Modern Development.
-
-                </p>
-
-            </div>
-
-            <div class="footer-links">
-
-                <a href="#portfolio">
-
-                    Work
-
-                </a>
-
-                <a href="#why">
-
-                    Why Us
-
-                </a>
-
-                <a href="#process">
-
-                    Process
-
-                </a>
-
-                <a href="#about">
-
-                    About
-
-                </a>
-
-                <a href="#contact">
-
-                    Contact
-
-                </a>
-
-            </div>
-
+      <div class="about-grid">
+        <div class="about-left">
+          <span class="section-tag">ABOUT AXERION</span>
+          <h2>A Creative Partnership.</h2>
         </div>
-
-        <div class="footer-bottom">
-
-            <p>
-
-                © 2026 Axerion. All Rights Reserved.
-
-            </p>
-
-            <p>
-
-                Designed & Developed by Axerion.
-
-            </p>
-
+        <div class="about-right">
+          <p>Axerion was founded on the idea that exceptional websites require both creative thinking and technical expertise.</p>
+          <p>By combining strategic design with modern development, we create digital experiences that are visually striking, responsive and built for growth.</p>
+          <p>Every project is approached with attention to detail, ensuring the final product reflects the client's brand while delivering real business value.</p>
         </div>
-
+      </div>
+     
     </div>
+  </section>
 
-</footer>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-content">
+          <span class="section-tag">START YOUR PROJECT</span>
+          <h2>READY TO STAND OUT ONLINE?</h2>
+          <p>Whether you're launching a new business, redesigning your website, or looking for a digital partner, we'd love to hear from you.</p>
+        </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" placeholder="Your Name">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label>Project Type</label>
+            <select>
+              <option>Website Design</option>
+              <option>Website Development</option>
+              <option>Website Redesign</option>
+              <option>AI &amp; Automation</option>
+              <option>Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Project Details</label>
+            <textarea rows="6" placeholder="Tell us about your project..."></textarea>
+          </div>
+          <button type="submit" class="contact-btn">Start Your Project</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <img src="assets/images/Axerion_Logo.png" alt="Axerion Logo">
+          </a>
+          <p>Creative Design. Modern Development.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#portfolio">Work</a>
+          <a href="#why">Why Us</a>
+          <a href="#process">Process</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Axerion. All Rights Reserved.</p>
+        <p>Designed &amp; Developed by Axerion.</p>
+      </div>
+    </div>
   </footer>
 
+  <script src="js/main.js"></script>
 </body>
 </html>
