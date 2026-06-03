@@ -186,32 +186,77 @@
           <h2>READY TO STAND OUT ONLINE?</h2>
           <p>Whether you're launching a new business, redesigning your website, or looking for a digital partner, we'd love to hear from you.</p>
         </div>
-        <form class="contact-form">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" placeholder="Your Name">
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="you@example.com">
-          </div>
-          <div class="form-group">
-            <label>Project Type</label>
-            <select>
-              <option>Website Design</option>
-              <option>Website Development</option>
-              <option>Website Redesign</option>
-              <option>AI &amp; Automation</option>
-              <option>Not Sure Yet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Project Details</label>
-            <textarea rows="6" placeholder="Tell us about your project..."></textarea>
-          </div>
-          <button type="submit" class="contact-btn">Start Your Project</button>
+        <!-- EmailJS SDK -->
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <script>
+        emailjs.init('WAmJQgKX-joma46gR'); // ← paste your public key here
+        </script>
+
+        <form class="contact-form" id="contact-form">
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="from_name" placeholder="Your Name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="reply_to" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>Project Type</label>
+                <select name="project_type">
+                    <option>Website Design</option>
+                    <option>Website Development</option>
+                    <option>Website Redesign</option>
+                    <option>AI & Automation</option>
+                    <option>Not Sure Yet</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Project Details</label>
+                <textarea name="message" rows="6" placeholder="Tell us about your project..."></textarea>
+            </div>
+
+            <button type="submit" class="contact-btn" id="submit-btn">
+                Start Your Project
+            </button>
+
+            <p id="form-status" style="display:none; text-align:center; margin-top:1rem; font-size:.9rem;"></p>
+
         </form>
-      </div>
+
+        <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('submit-btn');
+            const status = document.getElementById('form-status');
+
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+
+            emailjs.sendForm('service_znen6lf', 'template_59etcsp', this)
+            .then(() => {
+                status.style.display = 'block';
+                status.style.color = '#38B6FF';
+                status.textContent = '✓ Message sent! We\'ll be in touch soon.';
+                btn.textContent = 'Sent!';
+                this.reset();
+            })
+            .catch(() => {
+                status.style.display = 'block';
+                status.style.color = '#ff6b6b';
+                status.textContent = '✗ Something went wrong. Please try again.';
+                btn.textContent = 'Start Your Project';
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            });
+        });
+        </script>
     </div>
   </section>
 
