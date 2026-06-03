@@ -113,6 +113,7 @@ ul  { list-style: none; }
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.28s ease, opacity 0.28s ease;
 }
 
 .navbar .container {
@@ -284,7 +285,6 @@ ul  { list-style: none; }
 
 /* Glow blobs */
 
-}
 #hero::after {
   content: '';
   position: absolute;
@@ -817,4 +817,11 @@ footer {
     justify-content: space-between;
     text-align: left;
   }
+}
+
+/* Hide-on-scroll state: move navbar out of view when scrolling down */
+.navbar--hidden {
+  transform: translateX(-50%) translateY(-140%);
+  pointer-events: none;
+  opacity: 0.98;
 }
