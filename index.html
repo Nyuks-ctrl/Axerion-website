@@ -242,6 +242,15 @@
 
             emailjs.sendForm('service_znen6lf', 'template_59etcsp', this)
             .then(() => {
+
+                    // Send auto-reply to customer
+            emailjs.send('service_znen6lf', 'template_mzqcxnn', {
+            from_name: document.querySelector('[name="from_name"]').value,
+            reply_to: document.querySelector('[name="reply_to"]').value,
+            project_type: document.querySelector('[name="project_type"]').value,
+            message: document.querySelector('[name="message"]').value,
+            });
+
                 status.style.display = 'block';
                 status.style.color = '#38B6FF';
                 status.textContent = '✓ Message sent! We\'ll be in touch soon.';
