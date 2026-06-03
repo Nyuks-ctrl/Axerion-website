@@ -45,14 +45,55 @@ mobileOverlay.addEventListener('click', e => {
 /* ─── NAV SCROLL STATE ─── */
 const navbar = document.querySelector('.navbar');
 
+let lastScrollY = window.scrollY;
+let ticking = false;
+
 function handleNavScroll() {
-  navbar.style.background = window.scrollY > 60
+  const y = window.scrollY || 0;
+  navbar.style.background = y > 60
     ? 'rgba(5, 8, 22, 0.97)'
     : 'rgba(8, 13, 31, 0.85)';
 }
 
+function handleHideOnScroll() {
+  const currentY = window.scrollY || 0;
+  // If mobile menu is open, keep navbar visible
+  if (mobileOverlay && mobileOverlay.classList.contains('open')) {
+    navbar.classList.remove('navbar--hidden');
+    lastScrollY = currentY;
+    return;
+  }
+
+  // Always show near top
+  if (currentY <= 60) {
+    navbar.classList.remove('navbar--hidden');
+  } else if (currentY > lastScrollY + 10) {
+    // Scrolling down -> hide
+    navbar.classList.add('navbar--hidden');
+  } else if (currentY < lastScrollY - 10) {
+    // Scrolling up -> show
+    navbar.classList.remove('navbar--hidden');
+  }
+
+  lastScrollY = currentY;
+}
+
+function onScroll() {
+  handleNavScroll();
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      handleHideOnScroll();
+      ticking = false;
+    });
+    ticking = true;
+  }
+}
+
 // Use passive listener — never blocks scroll on mobile
-window.addEventListener('scroll', handleNavScroll, { passive: true });
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// Initialize state
+handleNavScroll();
 
 /* ─── SMOOTH ANCHOR SCROLL ─── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
